@@ -17,6 +17,22 @@ provider "azurerm" {
   client_id       = var.client_id
   client_secret   = var.client_secret
 }
+variable "client_id" {
+  type = string
+}
+
+variable "client_secret" {
+  type      = string
+  sensitive = true
+}
+
+variable "tenant_id" {
+  type = string
+}
+
+variable "subscription_id" {
+  type = string
+}
 
 resource "azurerm_resource_group" "rg" {
   name     = "rg-storage-secure"
@@ -149,6 +165,7 @@ resource "azurerm_log_analytics_workspace" "law" {
   sku                 = "PerGB2018"
   retention_in_days   = 30
 }
+
 
 
 
