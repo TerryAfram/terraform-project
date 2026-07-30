@@ -3,22 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Enterprise Compliance & Audit Dashboard</title>
+    <title>Enterprise Compliance & Governance Suite</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-slate-900 text-slate-100 min-h-screen flex flex-col justify-between font-sans transition-colors duration-200" id="body">
 
     <!-- Header -->
-    <header class="bg-slate-800 border-b border-slate-700 p-4 shadow-md">
+    <header class="bg-slate-800 border-b border-slate-700 p-4 shadow-md sticky top-0 z-50">
         <div class="max-w-6xl mx-auto flex justify-between items-center">
             <div class="flex items-center space-x-3">
                 <div class="bg-blue-600 p-2 rounded-lg text-white font-bold text-xl">🛡️</div>
                 <div>
                     <h1 class="text-lg font-bold tracking-wide">Governance & Compliance Suite</h1>
-                    <p class="text-xs text-slate-400">Interactive NIST, ISO 27001, SOC 2, SOX, NIST AI, COBIT</p>
+                    <p class="text-xs text-slate-400">Advanced CNAPP, NIST, ISO, SOC 2, SOX, AI RMF & COBIT</p>
                 </div>
             </div>
-            <div class="flex items-center space-x-3">
+            <div class="flex items-center space-x-2 sm:space-x-3">
                 <button onclick="toggleTheme()" class="bg-slate-700 hover:bg-slate-600 text-xs px-3 py-1.5 rounded-lg font-medium text-slate-200 transition">🌓 Theme</button>
                 <button onclick="generateAuditReport()" class="bg-blue-600 hover:bg-blue-500 text-xs px-3 py-1.5 rounded-lg font-semibold text-white transition">📥 Export Report</button>
             </div>
@@ -26,7 +26,7 @@
     </header>
 
     <!-- Main Content -->
-    <main class="max-w-6xl mx-auto p-4 w-full flex-grow space-y-6 mt-4">
+    <main class="max-w-6xl mx-auto p-4 w-full flex-grow space-y-6 mt-2">
         
         <!-- Framework Status Grid -->
         <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
@@ -62,10 +62,81 @@
             </div>
         </div>
 
+        <!-- NEW ADVANCED ENTERPRISE PANELS -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            
+            <!-- 1. Zero Trust & Identity Posture -->
+            <div class="bg-slate-800/60 border border-slate-700/80 rounded-xl p-5 shadow-xl flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center justify-between mb-3">
+                        <h3 class="text-sm font-semibold text-slate-200 uppercase tracking-wider">🔐 Zero Trust & Identity</h3>
+                        <span class="text-[10px] bg-blue-500/10 text-blue-400 px-2 py-0.5 rounded">Active Session</span>
+                    </div>
+                    <p class="text-xs text-slate-400 mb-4">Continuous validation of non-human service accounts and least-privilege role boundaries.</p>
+                    <div class="space-y-3 text-xs">
+                        <div class="flex justify-between items-center bg-slate-900/50 p-2.5 rounded-lg border border-slate-700/50">
+                            <span class="text-slate-300">Active Service Principals</span>
+                            <span class="font-bold text-white">24 Monitored</span>
+                        </div>
+                        <div class="flex justify-between items-center bg-slate-900/50 p-2.5 rounded-lg border border-slate-700/50">
+                            <span class="text-slate-300">Over-Privileged Roles</span>
+                            <span class="font-bold text-amber-400">2 Flagged</span>
+                        </div>
+                    </div>
+                </div>
+                <button onclick="appendLog('[IDENTITY] Executing automated least-privilege permission sweep...')" class="mt-4 w-full bg-slate-700 hover:bg-slate-600 text-xs font-semibold py-2 rounded-lg text-white transition">Run Identity Sweep</button>
+            </div>
+
+            <!-- 2. AI-SPM & Data Security Posture -->
+            <div class="bg-slate-800/60 border border-slate-700/80 rounded-xl p-5 shadow-xl flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center justify-between mb-3">
+                        <h3 class="text-sm font-semibold text-slate-200 uppercase tracking-wider">🧠 AI-SPM & DSPM Guard</h3>
+                        <span class="text-[10px] bg-emerald-500/10 text-emerald-400 px-2 py-0.5 rounded">Protected</span>
+                    </div>
+                    <p class="text-xs text-slate-400 mb-4">Monitoring AI model weights, vector embeddings, and data classification streams.</p>
+                    <div class="space-y-3 text-xs">
+                        <div class="flex justify-between items-center bg-slate-900/50 p-2.5 rounded-lg border border-slate-700/50">
+                            <span class="text-slate-300">LLM Endpoint Security</span>
+                            <span class="font-bold text-emerald-400">Secure (TLS 1.3)</span>
+                        </div>
+                        <div class="flex justify-between items-center bg-slate-900/50 p-2.5 rounded-lg border border-slate-700/50">
+                            <span class="text-slate-300">Training Data Enclave</span>
+                            <span class="font-bold text-emerald-400">Encrypted</span>
+                        </div>
+                    </div>
+                </div>
+                <button onclick="appendLog('[AI-SPM] Validating model weights and runtime input guardrails...')" class="mt-4 w-full bg-slate-700 hover:bg-slate-600 text-xs font-semibold py-2 rounded-lg text-white transition">Verify AI Guardrails</button>
+            </div>
+
+            <!-- 3. Infrastructure Drift & IaC Scanner -->
+            <div class="bg-slate-800/60 border border-slate-700/80 rounded-xl p-5 shadow-xl flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center justify-between mb-3">
+                        <h3 class="text-sm font-semibold text-slate-200 uppercase tracking-wider">⚡ IaC Drift Detector</h3>
+                        <span class="text-[10px] bg-purple-500/10 text-purple-400 px-2 py-0.5 rounded">Terraform v1.9</span>
+                    </div>
+                    <p class="text-xs text-slate-400 mb-4">Real-time comparison between live cloud state and version-controlled infrastructure code.</p>
+                    <div class="space-y-3 text-xs">
+                        <div class="flex justify-between items-center bg-slate-900/50 p-2.5 rounded-lg border border-slate-700/50">
+                            <span class="text-slate-300">State Alignment</span>
+                            <span class="font-bold text-emerald-400">99.2% Synced</span>
+                        </div>
+                        <div class="flex justify-between items-center bg-slate-900/50 p-2.5 rounded-lg border border-slate-700/50">
+                            <span class="text-slate-300">Configuration Drift</span>
+                            <span class="font-bold text-emerald-400">None Detected</span>
+                        </div>
+                    </div>
+                </div>
+                <button onclick="appendLog('[IAC] Running deep Terraform state file consistency check...')" class="mt-4 w-full bg-slate-700 hover:bg-slate-600 text-xs font-semibold py-2 rounded-lg text-white transition">Run State Plan Scan</button>
+            </div>
+
+        </div>
+
         <!-- Section: Interactive Sliders & Checklist Generator -->
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
             
-            <!-- Feature 2 & 1: Checklist Generator & Control Sliders -->
+            <!-- Checklist Generator & Control Sliders -->
             <div class="bg-slate-800/60 border border-slate-700/80 rounded-xl p-5 shadow-xl flex flex-col justify-between space-y-4">
                 <div>
                     <h3 class="text-sm font-semibold text-slate-200 uppercase tracking-wider mb-2">🛠️ Checklist Generator & Sliders</h3>
@@ -135,7 +206,7 @@
 
         </div>
 
-        <!-- Section: Feature 3 & 4 (Terminal Log Streamer & Custom Control Adder Form) -->
+        <!-- Section: Terminal Log Streamer & Custom Control Adder Form -->
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
             
             <!-- Custom Control Adder Form -->
@@ -238,7 +309,7 @@
 
     <!-- Footer -->
     <footer class="bg-slate-800/40 border-t border-slate-800 py-4 text-center text-xs text-slate-500">
-        Enterprise Governance Platform &bull; Interactive Compliance Suite
+        Enterprise Governance Platform &bull; Advanced Cloud Security Suite
     </footer>
 
     <!-- Interactive Logic Scripts -->
@@ -411,3 +482,4 @@
     </script>
 </body>
 </html>
+
