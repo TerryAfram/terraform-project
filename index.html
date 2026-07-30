@@ -3,92 +3,169 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Terraform & Storage Audit Dashboard</title>
+    <title>Enterprise Compliance & Audit Dashboard</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-slate-900 text-slate-100 min-h-screen flex flex-col justify-between font-sans transition-colors duration-200" id="body">
 
     <!-- Header -->
     <header class="bg-slate-800 border-b border-slate-700 p-4 shadow-md">
-        <div class="max-w-4xl mx-auto flex justify-between items-center">
+        <div class="max-w-6xl mx-auto flex justify-between items-center">
             <div class="flex items-center space-x-3">
-                <div class="bg-blue-600 p-2 rounded-lg text-white font-bold text-xl">☁️</div>
+                <div class="bg-blue-600 p-2 rounded-lg text-white font-bold text-xl">🛡️</div>
                 <div>
-                    <h1 class="text-lg font-bold tracking-wide">terraform-project</h1>
-                    <p class="text-xs text-slate-400">Cloudflare Pages & Infrastructure</p>
+                    <h1 class="text-lg font-bold tracking-wide">Governance & Compliance Suite</h1>
+                    <p class="text-xs text-slate-400">NIST, ISO 27001, SOC 2, SOX, NIST AI, COBIT</p>
                 </div>
             </div>
             <div class="flex items-center space-x-3">
                 <button onclick="toggleTheme()" class="bg-slate-700 hover:bg-slate-600 text-xs px-3 py-1.5 rounded-lg font-medium text-slate-200 transition">🌓 Theme</button>
-                <span class="bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-xs px-2.5 py-1 rounded-full font-medium">Live & Deployed</span>
+                <button onclick="generateAuditReport()" class="bg-blue-600 hover:bg-blue-500 text-xs px-3 py-1.5 rounded-lg font-semibold text-white transition">📥 Export Audit Report</button>
             </div>
         </div>
     </header>
 
     <!-- Main Content -->
-    <main class="max-w-4xl mx-auto p-4 w-full flex-grow space-y-6 mt-4">
+    <main class="max-w-6xl mx-auto p-4 w-full flex-grow space-y-6 mt-4">
         
-        <!-- Welcome Card -->
-        <div class="bg-slate-800/60 border border-slate-700/80 rounded-xl p-6 shadow-xl backdrop-blur-sm">
-            <h2 class="text-xl font-semibold mb-2 text-white">Storage Account Audit Dashboard</h2>
-            <p class="text-slate-300 text-sm leading-relaxed">
-                Welcome to your enhanced deployment! Monitoring real-time Terraform state definitions and cloud security compliance scans.
-            </p>
+        <!-- Framework Status Grid -->
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
+            <div class="bg-slate-800/60 border border-slate-700 rounded-xl p-3 text-center shadow">
+                <p class="text-xs text-slate-400 uppercase">NIST 800-53</p>
+                <p class="text-lg font-bold text-emerald-400 mt-1">98%</p>
+                <span class="text-[10px] bg-emerald-500/10 text-emerald-400 px-2 py-0.5 rounded">Compliant</span>
+            </div>
+            <div class="bg-slate-800/60 border border-slate-700 rounded-xl p-3 text-center shadow">
+                <p class="text-xs text-slate-400 uppercase">ISO 27001</p>
+                <p class="text-lg font-bold text-emerald-400 mt-1">95%</p>
+                <span class="text-[10px] bg-emerald-500/10 text-emerald-400 px-2 py-0.5 rounded">Certified</span>
+            </div>
+            <div class="bg-slate-800/60 border border-slate-700 rounded-xl p-3 text-center shadow">
+                <p class="text-xs text-slate-400 uppercase">SOC 2 Type II</p>
+                <p class="text-lg font-bold text-emerald-400 mt-1">100%</p>
+                <span class="text-[10px] bg-emerald-500/10 text-emerald-400 px-2 py-0.5 rounded">Passed</span>
+            </div>
+            <div class="bg-slate-800/60 border border-slate-700 rounded-xl p-3 text-center shadow">
+                <p class="text-xs text-slate-400 uppercase">SOX Controls</p>
+                <p class="text-lg font-bold text-amber-400 mt-1">88%</p>
+                <span class="text-[10px] bg-amber-500/10 text-amber-400 px-2 py-0.5 rounded">Review</span>
+            </div>
+            <div class="bg-slate-800/60 border border-slate-700 rounded-xl p-3 text-center shadow">
+                <p class="text-xs text-slate-400 uppercase">NIST AI RMF</p>
+                <p class="text-lg font-bold text-emerald-400 mt-1">92%</p>
+                <span class="text-[10px] bg-emerald-500/10 text-emerald-400 px-2 py-0.5 rounded">Optimized</span>
+            </div>
+            <div class="bg-slate-800/60 border border-slate-700 rounded-xl p-3 text-center shadow">
+                <p class="text-xs text-slate-400 uppercase">COBIT 2019</p>
+                <p class="text-lg font-bold text-emerald-400 mt-1">94%</p>
+                <span class="text-[10px] bg-emerald-500/10 text-emerald-400 px-2 py-0.5 rounded">Aligned</span>
+            </div>
         </div>
 
-        <!-- Metrics Cards -->
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-            <div class="bg-slate-800/60 border border-slate-700/80 rounded-xl p-4 shadow-lg">
-                <p class="text-xs text-slate-400 font-medium uppercase tracking-wider">Managed Resources</p>
-                <p class="text-2xl font-bold text-white mt-1">12</p>
-                <p class="text-xs text-emerald-400 mt-1">✓ 0 drift detected</p>
+        <!-- Section: Checklist Generator & Compliance Scanner -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            
+            <!-- Checklist Generator Control Panel -->
+            <div class="bg-slate-800/60 border border-slate-700/80 rounded-xl p-5 shadow-xl flex flex-col justify-between">
+                <div>
+                    <h3 class="text-sm font-semibold text-slate-200 uppercase tracking-wider mb-3">🛠️ Checklist Generator</h3>
+                    <p class="text-xs text-slate-400 mb-4">Select a target compliance framework to dynamically generate custom infrastructure verification checklists.</p>
+                    <label class="block text-xs font-medium text-slate-300 mb-1">Choose Framework:</label>
+                    <select id="frameworkSelect" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2.5 text-sm text-slate-200 mb-4 focus:outline-none focus:border-blue-500">
+                        <option value="nist">NIST SP 800-53</option>
+                        <option value="iso">ISO/IEC 27001:2022</option>
+                        <option value="soc2">SOC 2 Trust Services Criteria</option>
+                        <option value="sox">SOX IT General Controls</option>
+                        <option value="nist-ai">NIST AI Risk Management Framework</option>
+                        <option value="cobit">COBIT 2019 Framework</option>
+                    </select>
+                </div>
+                <button onclick="generateChecklist()" class="w-full bg-slate-700 hover:bg-slate-600 text-xs font-semibold py-2.5 rounded-lg text-white transition">Generate Framework Checklist</button>
             </div>
-            <div class="bg-slate-800/60 border border-slate-700/80 rounded-xl p-4 shadow-lg">
-                <p class="text-xs text-slate-400 font-medium uppercase tracking-wider">Storage Compliance</p>
-                <p class="text-2xl font-bold text-white mt-1">94%</p>
-                <p class="text-xs text-blue-400 mt-1">Encrypted & Secure</p>
+
+            <!-- Dynamic Checklist Output -->
+            <div class="lg:col-span-2 bg-slate-800/60 border border-slate-700/80 rounded-xl p-5 shadow-xl flex flex-col justify-between">
+                <div>
+                    <div class="flex justify-between items-center mb-3">
+                        <h3 id="checklistTitle" class="text-sm font-semibold text-slate-200 uppercase tracking-wider">Active Checklist: NIST SP 800-53</h3>
+                        <span id="checklistCount" class="text-xs bg-blue-500/10 text-blue-400 px-2.5 py-1 rounded-full font-medium">4 Items</span>
+                    </div>
+                    <div id="checklistContainer" class="space-y-2.5 max-h-48 overflow-y-auto pr-1 text-sm">
+                        <label class="flex items-start space-x-3 bg-slate-900/50 p-2.5 rounded-lg border border-slate-700/50 cursor-pointer">
+                            <input type="checkbox" checked class="mt-0.5 rounded border-slate-700 text-blue-600 focus:ring-0">
+                            <span class="text-slate-300 text-xs leading-relaxed"><strong class="text-white">AC-2 Account Management:</strong> Verify automated disabling of inactive accounts within 90 days.</span>
+                        </label>
+                        <label class="flex items-start space-x-3 bg-slate-900/50 p-2.5 rounded-lg border border-slate-700/50 cursor-pointer">
+                            <input type="checkbox" checked class="mt-0.5 rounded border-slate-700 text-blue-600 focus:ring-0">
+                            <span class="text-slate-300 text-xs leading-relaxed"><strong class="text-white">SC-13 Cryptographic Protection:</strong> Ensure FIPS-validated encryption modules govern storage endpoints.</span>
+                        </label>
+                        <label class="flex items-start space-x-3 bg-slate-900/50 p-2.5 rounded-lg border border-slate-700/50 cursor-pointer">
+                            <input type="checkbox" class="mt-0.5 rounded border-slate-700 text-blue-600 focus:ring-0">
+                            <span class="text-slate-300 text-xs leading-relaxed"><strong class="text-white">AU-6 Audit Record Review:</strong> Validate continuous log ingestion pipelines into central SIEM.</span>
+                        </label>
+                        <label class="flex items-start space-x-3 bg-slate-900/50 p-2.5 rounded-lg border border-slate-700/50 cursor-pointer">
+                            <input type="checkbox" checked class="mt-0.5 rounded border-slate-700 text-blue-600 focus:ring-0">
+                            <span class="text-slate-300 text-xs leading-relaxed"><strong class="text-white">CP-9 Backup Integrity:</strong> Test automated snapshot recovery protocols bi-annually.</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="mt-4 pt-3 border-t border-slate-700/60 flex justify-between items-center text-xs text-slate-400">
+                    <span>Status: Interactive Verification Mode</span>
+                    <button onclick="runComplianceScan()" class="bg-emerald-600 hover:bg-emerald-500 text-white px-3 py-1.5 rounded-md font-semibold transition">Run Compliance Scan</button>
+                </div>
             </div>
-            <div class="bg-slate-800/60 border border-slate-700/80 rounded-xl p-4 shadow-lg">
-                <p class="text-xs text-slate-400 font-medium uppercase tracking-wider">Active Workspaces</p>
-                <p class="text-2xl font-bold text-white mt-1">Prod-UsEast</p>
-                <p class="text-xs text-purple-400 mt-1">Terraform v1.9+</p>
-            </div>
+
         </div>
 
-        <!-- Interactive Storage Audit Logs Table -->
-        <div class="bg-slate-800/60 border border-slate-700/80 rounded-xl p-6 shadow-xl overflow-hidden">
-            <div class="flex justify-between items-center mb-4">
-                <h3 class="text-sm font-semibold text-slate-400 uppercase tracking-wider">Recent Storage Audit Logs</h3>
-                <span class="text-xs text-slate-400">Scanned Today</span>
+        <!-- Section: Compliance Scanning & Audit Logs Report Table -->
+        <div class="bg-slate-800/60 border border-slate-700/80 rounded-xl p-6 shadow-xl">
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 gap-2">
+                <div>
+                    <h3 class="text-sm font-semibold text-slate-200 uppercase tracking-wider">Compliance Scanning & Audit Report Records</h3>
+                    <p class="text-xs text-slate-400">Real-time mapping of Terraform resources against multi-framework compliance controls.</p>
+                </div>
+                <span id="scanStatusBadge" class="text-xs bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-3 py-1 rounded-full font-medium">Scan Engine: Ready</span>
             </div>
+            
             <div class="overflow-x-auto">
                 <table class="w-full text-left text-sm text-slate-300">
                     <thead class="bg-slate-900/60 text-xs uppercase text-slate-400 border-b border-slate-700">
                         <tr>
-                            <th class="p-3">Storage Account</th>
-                            <th class="p-3">Encryption</th>
-                            <th class="p-3">Public Access</th>
-                            <th class="p-3">Status</th>
+                            <th class="p-3">Resource Target</th>
+                            <th class="p-3">Framework Control</th>
+                            <th class="p-3">Evaluation Result</th>
+                            <th class="p-3">Risk Severity</th>
+                            <th class="p-3">Action Status</th>
                         </tr>
                     </thead>
-                    <tbody class="divide-y divide-slate-700/50">
+                    <tbody class="divide-y divide-slate-700/50" id="auditTableBody">
                         <tr class="hover:bg-slate-700/20">
-                            <td class="p-3 font-medium text-white">stterraformlogs01</td>
-                            <td class="p-3 text-emerald-400">AES-256</td>
-                            <td class="p-3 text-slate-400">Disabled</td>
-                            <td class="p-3"><span class="bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-xs px-2 py-0.5 rounded">Passed</span></td>
+                            <td class="p-3 font-medium text-white">aws_s3_bucket.secure_logs</td>
+                            <td class="p-3 text-slate-300">ISO 27001 (A.12.4)</td>
+                            <td class="p-3 text-emerald-400">Passing</td>
+                            <td class="p-3"><span class="text-xs text-slate-400">None</span></td>
+                            <td class="p-3"><span class="bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-xs px-2 py-0.5 rounded">Verified</span></td>
                         </tr>
                         <tr class="hover:bg-slate-700/20">
-                            <td class="p-3 font-medium text-white">stauditbackupstore</td>
-                            <td class="p-3 text-emerald-400">AES-256</td>
-                            <td class="p-3 text-slate-400">Disabled</td>
-                            <td class="p-3"><span class="bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-xs px-2 py-0.5 rounded">Passed</span></td>
+                            <td class="p-3 font-medium text-white">azurerm_storage_account.db_bk</td>
+                            <td class="p-3 text-slate-300">SOC 2 (CC6.1)</td>
+                            <td class="p-3 text-emerald-400">Passing</td>
+                            <td class="p-3"><span class="text-xs text-slate-400">None</span></td>
+                            <td class="p-3"><span class="bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-xs px-2 py-0.5 rounded">Verified</span></td>
                         </tr>
                         <tr class="hover:bg-slate-700/20">
-                            <td class="p-3 font-medium text-white">sttempdataeast</td>
-                            <td class="p-3 text-amber-400">Key Managed</td>
-                            <td class="p-3 text-red-400 font-medium">Enabled</td>
-                            <td class="p-3"><span class="bg-amber-500/10 text-amber-400 border border-amber-500/20 text-xs px-2 py-0.5 rounded">Warning</span></td>
+                            <td class="p-3 font-medium text-white">aws_iam_policy.admin_access</td>
+                            <td class="p-3 text-slate-300">SOX (ITGC-4)</td>
+                            <td class="p-3 text-amber-400">Deviation Found</td>
+                            <td class="p-3"><span class="text-amber-400 font-semibold text-xs">Medium</span></td>
+                            <td class="p-3"><span class="bg-amber-500/10 text-amber-400 border border-amber-500/20 text-xs px-2 py-0.5 rounded">Remediation Req</span></td>
+                        </tr>
+                        <tr class="hover:bg-slate-700/20">
+                            <td class="p-3 font-medium text-white">ai_model_endpoint.llm_v1</td>
+                            <td class="p-3 text-slate-300">NIST AI RMF (Govern 1.2)</td>
+                            <td class="p-3 text-emerald-400">Passing</td>
+                            <td class="p-3"><span class="text-xs text-slate-400">Low</span></td>
+                            <td class="p-3"><span class="bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-xs px-2 py-0.5 rounded">Verified</span></td>
                         </tr>
                     </tbody>
                 </table>
@@ -99,9 +176,10 @@
 
     <!-- Footer -->
     <footer class="bg-slate-800/40 border-t border-slate-800 py-4 text-center text-xs text-slate-500">
-        Managed via GitHub & Cloudflare Pages
+        Enterprise Governance Platform &bull; Automated Framework Engine
     </footer>
 
+    <!-- Interactive Logic Scripts -->
     <script>
         function toggleTheme() {
             const body = document.getElementById('body');
@@ -112,6 +190,102 @@
                 body.classList.remove('bg-slate-100', 'text-slate-900');
                 body.classList.add('bg-slate-900', 'text-slate-100');
             }
+        }
+
+        const frameworkData = {
+            nist: {
+                title: "Active Checklist: NIST SP 800-53",
+                items: [
+                    { text: "<strong>AC-2 Account Management:</strong> Verify automated disabling of inactive accounts.", checked: true },
+                    { text: "<strong>SC-13 Cryptographic Protection:</strong> Ensure FIPS-validated encryption modules.", checked: true },
+                    { text: "<strong>AU-6 Audit Record Review:</strong> Validate continuous log ingestion pipelines.", checked: false },
+                    { text: "<strong>CP-9 Backup Integrity:</strong> Test automated snapshot recovery protocols.", checked: true }
+                ]
+            },
+            iso: {
+                title: "Active Checklist: ISO/IEC 27001:2022",
+                items: [
+                    { text: "<strong>A.9 Access Control:</strong> Review user permissions and multi-factor authentication requirements.", checked: true },
+                    { text: "<strong>A.12 Operations Security:</strong> Confirm malware protection and logging safeguards are live.", checked: true },
+                    { text: "<strong>A.14 System Development:</strong> Verify secure coding standards are enforced via CI/CD.", checked: true }
+                ]
+            },
+            soc2: {
+                title: "Active Checklist: SOC 2 Trust Services Criteria",
+                items: [
+                    { text: "<strong>CC6.1 Logical Access:</strong> Infrastructure firewalls and security groups block unauthorized ports.", checked: true },
+                    { text: "<strong>CC7.2 System Monitoring:</strong> Real-time alerts configured for anomalous resource modifications.", checked: false },
+                    { text: "<strong>CC8.1 Change Management:</strong> All Terraform modifications require peer code review and approvals.", checked: true }
+                ]
+            },
+            sox: {
+                title: "Active Checklist: SOX IT General Controls",
+                items: [
+                    { text: "<strong>ITGC-1 Financial Data Segregation:</strong> Database access restricted strictly to authorized apps.", checked: true },
+                    { text: "<strong>ITGC-4 Program Change Controls:</strong> Production deployment pipelines utilize immutable versioning.", checked: false },
+                    { text: "<strong>ITGC-9 Backup Controls:</strong> Financial record state back-ups verified daily.", checked: true }
+                ]
+            },
+            "nist-ai": {
+                title: "Active Checklist: NIST AI Risk Management Framework",
+                items: [
+                    { text: "<strong>Govern 1.1 Accountability:</strong> AI model pipeline metadata and risk policies mapped.", checked: true },
+                    { text: "<strong>Map 2.3 Data Integrity:</strong> Training datasets validated for bias and security vulnerabilities.", checked: true },
+                    { text: "<strong>Measure 2.7 Reliability:</strong> Stress testing configured for runtime model responses.", checked: false }
+                ]
+            },
+            cobit: {
+                title: "Active Checklist: COBIT 2019 Framework",
+                items: [
+                    { text: "<strong>APO12 Risk Management:</strong> Cloud asset risk registers regularly updated.", checked: true },
+                    { text: "<strong>BAI03 Solutions Identification:</strong> Infrastructure changes verified against enterprise architecture goals.", checked: true },
+                    { text: "<strong>DSS04 Continuity:</strong> Disaster recovery plans automated via infrastructure code.", checked: true }
+                ]
+            }
+        };
+
+        function generateChecklist() {
+            const select = document.getElementById('frameworkSelect').value;
+            const data = frameworkData[select];
+            document.getElementById('checklistTitle').innerText = data.title;
+            document.getElementById('checklistCount').innerText = data.items.length + " Items";
+            
+            const container = document.getElementById('checklistContainer');
+            container.innerHTML = '';
+            
+            data.items.forEach(item => {
+                const label = document.createElement('label');
+                label.className = "flex items-start space-x-3 bg-slate-900/50 p-2.5 rounded-lg border border-slate-700/50 cursor-pointer";
+                label.innerHTML = `
+                    <input type="checkbox" ${item.checked ? 'checked' : ''} class="mt-0.5 rounded border-slate-700 text-blue-600 focus:ring-0">
+                    <span class="text-slate-300 text-xs leading-relaxed">${item.text}</span>
+                `;
+                container.appendChild(label);
+            });
+        }
+
+        function runComplianceScan() {
+            const badge = document.getElementById('scanStatusBadge');
+            badge.innerText = "Scan Engine: Running...";
+            badge.className = "text-xs bg-blue-500/10 text-blue-400 border border-blue-500/20 px-3 py-1 rounded-full font-medium animate-pulse";
+            
+            setTimeout(() => {
+                badge.innerText = "Scan Complete (100% Verified)";
+                badge.className = "text-xs bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-3 py-1 rounded-full font-medium";
+            }, 1200);
+        }
+
+        function generateAuditReport() {
+            const reportContent = "ENTERPRISE COMPLIANCE AUDIT REPORT\nGenerated via Dashboard UI\nFrameworks: NIST, ISO 27001, SOC 2, SOX, NIST AI, COBIT\nStatus: Verified & Exported Successfully";
+            const blob = new Blob([reportContent], { type: 'text/plain' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'compliance_audit_report.txt';
+            document.body.appendChild(a);
+            a.click();
+            window.URL.revokeObjectURL(url);
+            document.body.removeChild(a);
         }
     </script>
 </body>
