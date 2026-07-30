@@ -15,10 +15,15 @@
                 <div class="bg-blue-600 p-2 rounded-lg text-white font-bold text-xl">🛡️</div>
                 <div>
                     <h1 class="text-lg font-bold tracking-wide">Governance & Compliance Suite</h1>
-                    <p class="text-xs text-slate-400">Advanced CNAPP, NIST, ISO, SOC 2, SOX, AI RMF & COBIT</p>
+                    <p class="text-xs text-slate-400">RBAC, Webhooks, Heatmaps & Advanced CNAPP</p>
                 </div>
             </div>
             <div class="flex items-center space-x-2 sm:space-x-3">
+                <select id="rbacRole" onchange="updateRBACRole()" class="bg-slate-700 text-slate-200 text-xs px-2 py-1.5 rounded-lg font-medium border border-slate-600 focus:outline-none">
+                    <option value="ciso">Role: CISO / Admin</option>
+                    <option value="devops">Role: DevOps Engineer</option>
+                    <option value="auditor">Role: Compliance Auditor</option>
+                </select>
                 <button onclick="toggleTheme()" class="bg-slate-700 hover:bg-slate-600 text-xs px-3 py-1.5 rounded-lg font-medium text-slate-200 transition">🌓 Theme</button>
                 <button onclick="generateAuditReport()" class="bg-blue-600 hover:bg-blue-500 text-xs px-3 py-1.5 rounded-lg font-semibold text-white transition">📥 Export Report</button>
             </div>
@@ -62,7 +67,57 @@
             </div>
         </div>
 
-        <!-- NEW ADVANCED ENTERPRISE PANELS -->
+        <!-- NEW SUGGESTED PANELS: Vulnerability Heatmap Matrix & Webhook Notifier -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            
+            <!-- Vulnerability Heatmap Matrix -->
+            <div class="lg:col-span-2 bg-slate-800/60 border border-slate-700/80 rounded-xl p-5 shadow-xl flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center justify-between mb-3">
+                        <h3 class="text-sm font-semibold text-slate-200 uppercase tracking-wider">🔥 Vulnerability Heatmap Matrix</h3>
+                        <span class="text-[10px] bg-slate-700 text-slate-300 px-2 py-0.5 rounded">Asset Risk Density</span>
+                    </div>
+                    <p class="text-xs text-slate-400 mb-4">Executive severity concentration map spanning multi-cloud infrastructure components.</p>
+                    <div class="grid grid-cols-4 gap-2 text-center text-xs">
+                        <div class="bg-red-500/20 border border-red-500/30 p-3 rounded-lg">
+                            <span class="block text-[10px] text-red-400 uppercase">Critical</span>
+                            <span class="text-lg font-bold text-red-300">0</span>
+                        </div>
+                        <div class="bg-amber-500/20 border border-amber-500/30 p-3 rounded-lg">
+                            <span class="block text-[10px] text-amber-400 uppercase">High</span>
+                            <span class="text-lg font-bold text-amber-300">1</span>
+                        </div>
+                        <div class="bg-blue-500/20 border border-blue-500/30 p-3 rounded-lg">
+                            <span class="block text-[10px] text-blue-400 uppercase">Medium</span>
+                            <span class="text-lg font-bold text-blue-300">2</span>
+                        </div>
+                        <div class="bg-emerald-500/20 border border-emerald-500/30 p-3 rounded-lg">
+                            <span class="block text-[10px] text-emerald-400 uppercase">Low</span>
+                            <span class="text-lg font-bold text-emerald-300">12</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-4 pt-3 border-t border-slate-700/60 flex justify-between items-center text-xs text-slate-400">
+                    <span>Matrix Status: Fully Updated</span>
+                    <button onclick="appendLog('[HEATMAP] Refreshed asset risk density computations.')" class="bg-slate-700 hover:bg-slate-600 text-slate-200 px-3 py-1.5 rounded-md font-medium transition">Refresh Matrix</button>
+                </div>
+            </div>
+
+            <!-- Automated Webhook / Slack Simulation Panel -->
+            <div class="bg-slate-800/60 border border-slate-700/80 rounded-xl p-5 shadow-xl flex flex-col justify-between">
+                <div>
+                    <h3 class="text-sm font-semibold text-slate-200 uppercase tracking-wider mb-2">💬 Webhook & Alerts</h3>
+                    <p class="text-xs text-slate-400 mb-4">Simulate pushing real-time compliance alerts to Slack or Teams webhooks.</p>
+                    <div class="space-y-2 mb-4">
+                        <input type="text" id="webhookChannel" value="#secops-alerts" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2 text-xs text-slate-200 focus:outline-none focus:border-blue-500">
+                    </div>
+                </div>
+                <button onclick="triggerWebhookAlert()" class="w-full bg-emerald-600 hover:bg-emerald-500 text-xs font-semibold py-2.5 rounded-lg text-white transition">Send Webhook Test Alert</button>
+            </div>
+
+        </div>
+
+        <!-- Advanced Enterprise Panels (Zero Trust, AI-SPM, IaC Drift) -->
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
             
             <!-- 1. Zero Trust & Identity Posture -->
@@ -72,7 +127,7 @@
                         <h3 class="text-sm font-semibold text-slate-200 uppercase tracking-wider">🔐 Zero Trust & Identity</h3>
                         <span class="text-[10px] bg-blue-500/10 text-blue-400 px-2 py-0.5 rounded">Active Session</span>
                     </div>
-                    <p class="text-xs text-slate-400 mb-4">Continuous validation of non-human service accounts and least-privilege role boundaries.</p>
+                    <p class="text-xs text-slate-400 mb-4">Continuous validation of non-human service accounts and least-privilege boundaries.</p>
                     <div class="space-y-3 text-xs">
                         <div class="flex justify-between items-center bg-slate-900/50 p-2.5 rounded-lg border border-slate-700/50">
                             <span class="text-slate-300">Active Service Principals</span>
@@ -323,6 +378,16 @@
                 body.classList.remove('bg-slate-100', 'text-slate-900');
                 body.classList.add('bg-slate-900', 'text-slate-100');
             }
+        }
+
+        function updateRBACRole() {
+            const role = document.getElementById('rbacRole').value;
+            appendLog(`[RBAC] Security context switched to role: ${role.toUpperCase()}. Permissions updated.`);
+        }
+
+        function triggerWebhookAlert() {
+            const channel = document.getElementById('webhookChannel').value;
+            appendLog(`[WEBHOOK] Successfully dispatched compliance alert payload to Slack channel ${channel}.`);
         }
 
         function updateScoreSlider(type, val) {
